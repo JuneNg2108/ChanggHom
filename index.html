@@ -34,13 +34,32 @@
         .kawaii-bg {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23f3a5c1' fill-opacity='0.1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
         }
+        .mute-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .mute-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 min-h-screen flex items-center justify-center p-4">
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <div id="muteButton" class="mute-button">
+        <i class="fas fa-volume-up text-2xl text-pink-500"></i>
+    </div>
 
     <!-- Envelope Section -->
     <div id="envelope" class="envelope cursor-pointer text-center">
@@ -192,12 +211,37 @@
 
     <script>
         const bgMusic = document.getElementById('bgMusic');
+        const muteButton = document.getElementById('muteButton');
+        let isMuted = false;
+
+        // Preload the audio
+        bgMusic.load();
 
         document.getElementById('envelope').addEventListener('click', function() {
             this.classList.add('hidden');
             document.getElementById('letter').classList.remove('hidden');
-            bgMusic.play();
+            playAudio();
         });
+
+        muteButton.addEventListener('click', toggleMute);
+
+        function playAudio() {
+            bgMusic.play().catch(error => {
+                console.log("Audio play failed:", error);
+                // Fallback: try playing on user interaction
+                document.body.addEventListener('click', () => {
+                    bgMusic.play().catch(e => console.log("Audio play failed again:", e));
+                }, { once: true });
+            });
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            bgMusic.muted = isMuted;
+            muteButton.innerHTML = isMuted 
+                ? '<i class="fas fa-volume-mute text-2xl text-pink-500"></i>'
+                : '<i class="fas fa-volume-up text-2xl text-pink-500"></i>';
+        }
 
         function hideAllElements() {
             document.getElementById('letter').classList.add('hidden');
@@ -240,6 +284,15 @@
                 button.style.top = newY + 'px';
             });
         }
+
+        // Add this to ensure smooth playback
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                bgMusic.pause();
+            } else {
+                if (!isMuted) bgMusic.play();
+            }
+        });
     </script>
 </body>
 </html>
