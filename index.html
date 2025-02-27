@@ -384,7 +384,8 @@
 
         function setupMovingButton() {
             const button = document.getElementById('moving-no');
-            button.addEventListener('mouseover', function() {
+            
+            function moveButton() {
                 const maxX = window.innerWidth - button.offsetWidth;
                 const maxY = window.innerHeight - button.offsetHeight;
                 const newX = Math.random() * maxX;
@@ -392,7 +393,13 @@
                 button.style.position = 'fixed';
                 button.style.left = newX + 'px';
                 button.style.top = newY + 'px';
-            });
+            }
+
+            // Initial movement
+            moveButton();
+
+            // Move every 2 seconds
+            setInterval(moveButton, 500);
         }
 
         // Add this to ensure smooth playback
