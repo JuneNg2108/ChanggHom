@@ -25,10 +25,23 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes rainbow {
+            0% { color: #ff9999; }
+            25% { color: #ffcc99; }
+            50% { color: #99ff99; }
+            75% { color: #99ccff; }
+            100% { color: #ff99ff; }
+        }
         .float-animation { animation: float 3s ease-in-out infinite; }
         .wiggle-animation { animation: wiggle 1s ease-in-out infinite; }
         .sparkle { animation: sparkle 1.5s ease-in-out infinite; }
         .bounce-animation { animation: bounce 0.5s ease-in-out infinite; }
+        .heart-beat { animation: heart-beat 1s ease-in-out infinite; }
+        .rainbow-text { animation: rainbow 5s linear infinite; }
         .envelope { transition: all 0.3s ease; }
         .envelope:hover { transform: scale(1.1) rotate(5deg); }
         .kawaii-bg {
@@ -49,6 +62,12 @@
             background-color: rgba(255, 255, 255, 0.9);
             transform: scale(1.1);
         }
+        .kute-border {
+            border: 4px solid transparent;
+            border-image: linear-gradient(to right, #ff9999, #ffcc99, #99ff99, #99ccff, #ff99ff);
+            border-image-slice: 1;
+            animation: rainbow 5s linear infinite;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 min-h-screen flex items-center justify-center p-4">
@@ -66,41 +85,45 @@
         <div class="text-9xl mb-4 float-animation">
             🐱
         </div>
-        <p class="cabin-sketch text-4xl text-pink-500 animate-pulse">
-            Nya~ Open me!
+        <p class="cabin-sketch text-4xl text-pink-500 animate-pulse rainbow-text">
+            Nya~ Open me, pretty paw-lease!
         </p>
     </div>
 
     <!-- Invitation Letter -->
-    <div id="letter" class="hidden max-w-4xl w-full bg-white rounded-3xl shadow-2xl p-8 md:p-10 mx-auto kawaii-bg">
+    <div id="letter" class="hidden max-w-4xl w-full bg-white rounded-3xl shadow-2xl p-8 md:p-10 mx-auto kawaii-bg kute-border">
         <div class="text-center relative">
             <div class="absolute top-0 left-0 text-4xl md:text-5xl wiggle-animation">🌸</div>
             <div class="absolute top-0 right-0 text-4xl md:text-5xl wiggle-animation">🎀</div>
-            <h1 class="cabin-sketch text-5xl md:text-6xl text-pink-500 mb-6 md:mb-8">Hi Changg!</h1>
-            <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 shadow-inner">
+            <h1 class="cabin-sketch text-5xl md:text-6xl text-pink-500 mb-6 md:mb-8 rainbow-text">Meow there, Changg!</h1>
+            <div class="relative bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 shadow-inner">
+                <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4">
+                    <img src="end1.png" alt="A placeholder for Changg's image, resembling a cute stamp with a pink border" class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-pink-300 shadow-lg">
+                </div>
+                <p class="cabin-sketch text-3xl md:text-4xl text-gray-700 mb-4">Dear Changg,</p>
                 <p class="nunito text-lg md:text-xl mb-4 md:mb-6 text-gray-700 leading-relaxed">
                     🌟 Nya~ Would you make this kitty's day super special? 🐾
                 </p>
                 <p class="nunito text-lg md:text-xl mb-4 md:mb-6 text-gray-700 leading-relaxed">
                     I'm hoping you'll join me for a purr-fectly delightful evening at the adorable
-                    <span class="font-bold text-purple-600 text-xl md:text-2xl">Hom Eatery</span>
+                    <span class="font-bold text-purple-600 text-xl md:text-2xl heart-beat">Hom Eatery</span>
                 </p>
                 <p class="cabin-sketch text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-pink-500">
-                    🗓️ This Catur-day at 7 PM 🕖
+                    🗓️ This Sun-nya (9/3) at 7 PM 🕖
                 </p>
                 <p class="nunito text-lg md:text-xl text-gray-700 leading-relaxed">
                     Let's create meow-gical memories and have a paw-sitively wonderful time! 🐱✨
                 </p>
             </div>
-            <p class="cabin-sketch text-2xl md:text-3xl text-purple-500 mb-6 md:mb-8">
-                What do you say, my purr-ecious friend?
+            <p class="cabin-sketch text-2xl md:text-3xl text-purple-500 mb-6 md:mb-8 rainbow-text">
+                What do you say, my furr-end?
             </p>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
                 <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg">
-                    Meow yes! 😻
+                    Meow yes! I'm feline it! 😻
                 </button>
                 <button onclick="handleResponse(false)" class="bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg">
-                    Need to paw-nder 🤔
+                    Paw-se for a moment 🐾
                 </button>
             </div>
             <div class="mt-6 md:mt-8 relative">
@@ -113,12 +136,12 @@
     <!-- Response Messages -->
     <div id="response-messages" class="hidden max-w-4xl w-full">
         <!-- Yes Response -->
-        <div id="yes-response" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg">
+        <div id="yes-response" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
             <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
                 😻
             </div>
-            <p class="cabin-sketch text-4xl md:text-5xl text-pink-500 mb-6">
-                Purr-fection!
+            <p class="cabin-sketch text-4xl md:text-5xl text-pink-500 mb-6 rainbow-text">
+                Purr-fection! You're the cat's meow!
             </p>
             <p class="nunito text-xl md:text-2xl text-gray-700 mb-8">
                 You've made this kitty the happiest in the whole wide world! 🌈
@@ -126,30 +149,33 @@
             <div class="relative">
                 <div class="absolute top-0 left-1/4 text-4xl md:text-5xl sparkle">✨</div>
                 <div class="absolute bottom-0 right-1/4 text-4xl md:text-5xl sparkle" style="animation-delay: 0.5s;">✨</div>
-                <img src="end.gif" alt="A super cute cartoon cat doing a happy dance" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+                <img src="e6.gif" alt="A super cute cartoon cat doing a happy dance with hearts and stars around it" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
             </div>
-            <p class="nunito text-xl md:text-2xl text-purple-500 mt-8">
-                Can't wait to see you, nya~ 💖
+            <p class="nunito text-xl md:text-2xl text-purple-500 mt-8 rainbow-text">
+                Can't wait to see you, nya~ It's gonna be paw-some! 💖
             </p>
         </div>
 
         <!-- No Response 1 -->
-        <div id="no-response-1" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg">
+        <div id="no-response-1" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
             <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
                 😿
             </div>
-            <p class="cabin-sketch text-3xl md:text-4xl text-purple-500 mb-6">
-                Aw, fur real?
+            <p class="cabin-sketch text-3xl md:text-4xl text-purple-500 mb-6 rainbow-text">
+                Aw, are you fur real right meow?
             </p>
             <p class="nunito text-xl md:text-2xl text-gray-700 mb-8">
-                You'd make this kitty's heart go doki-doki with joy...
+                Your purr-sence would make this kitty's heart go doki-doki with joy...
             </p>
+            <div class="relative mb-8">
+                <img src="e1.jpg" alt="A cute sad cat gif" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+            </div>
             <div class="space-y-4 md:space-y-6">
                 <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
-                    Nya~ I changed my mind! 🐱
+                    Nya~ I've changed my meow-nd! Let's do it! 🐱
                 </button>
                 <button onclick="handleSecondNo()" class="bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
-                    Still not sure 🙀
+                    Meow~ Can we chat a bit more? 🙀
                 </button>
             </div>
             <div class="mt-6 md:mt-8 relative">
@@ -158,23 +184,54 @@
             </div>
         </div>
 
+        <!-- No Response 1.5 (New phase) -->
+        <div id="no-response-1-5" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
+            <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
+                🐾
+            </div>
+            <p class="cabin-sketch text-3xl md:text-4xl text-pink-500 mb-6 rainbow-text">
+                Paw-lease, let's make this work!
+            </p>
+            <p class="nunito text-xl md:text-2xl text-gray-700 mb-8">
+                I promise it'll be a purr-fectly amazing time! How about we...
+            </p>
+            <div class="relative mb-8">
+                <img src="e2.gif" alt="A cute cat gif showing persistence" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+            </div>
+            <div class="space-y-4 md:space-y-6">
+                <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
+                    Okay, you've con-furr-nced me! Let's go! 😸
+                </button>
+                <button onclick="handleThirdNo()" class="bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
+                    Still unsure, can we explore other options? 🙈
+                </button>
+            </div>
+            <div class="mt-6 md:mt-8 relative">
+                <div class="absolute top-0 left-1/4 text-4xl md:text-5xl sparkle">🍣</div>
+                <div class="absolute bottom-0 right-1/4 text-4xl md:text-5xl sparkle" style="animation-delay: 0.5s;">🍱</div>
+            </div>
+        </div>
+
         <!-- No Response 2 -->
-        <div id="no-response-2" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg">
+        <div id="no-response-2" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
             <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
                 🐱
             </div>
-            <p class="cabin-sketch text-3xl md:text-4xl text-pink-500 mb-6">
-                Paw-lease reconsider?
+            <p class="cabin-sketch text-3xl md:text-4xl text-pink-500 mb-6 rainbow-text">
+                Meow~ Let's figure this out together!
             </p>
             <p class="nunito text-xl md:text-2xl text-gray-700 mb-8">
-                I promise it'll be the most kawaii evening ever!
+                Your company would make me the happiest kitty in town! 🐾
             </p>
+            <div class="relative mb-8">
+                <img src="e3.gif" alt="A cute cat gif showing excitement" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+            </div>
             <div class="space-y-4 md:space-y-6">
                 <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
-                    Okay, you've con-purr-vinced me! 🌟
+                    Okay, I'm in! Let's make it purr-fect! 🌟
                 </button>
-                <button onclick="handleFinalNo()" class="bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
-                    I'm still not sure 😿
+                <button onclick="handleFourthNo()" class="bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
+                    I'm still not sure, can we discuss more? 😺
                 </button>
             </div>
             <div class="mt-6 md:mt-8 relative">
@@ -183,23 +240,52 @@
             </div>
         </div>
 
-        <!-- Final Response -->
-        <div id="final-response" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg">
+        <!-- No Response 3 (Date Selection) -->
+        <div id="no-response-3" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
             <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
-                🐾
+                📅
             </div>
-            <p class="cabin-sketch text-3xl md:text-4xl text-purple-500 mb-6">
-                You're too purr-ecious to say no to!
+            <p class="cabin-sketch text-3xl md:text-4xl text-pink-500 mb-6 rainbow-text">
+                Paw-lease pick a purr-fect date!
             </p>
             <p class="nunito text-xl md:text-2xl text-gray-700 mb-8">
-                I've got a basket full of kawaii surprises just for you!
+                When would you like to make some meow-gical memories with me? 🐾
             </p>
+            <div class="relative mb-8">
+                <img src="e4.gif" alt="A cute cat gif with a calendar" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+            </div>
+            <div class="space-y-4 md:space-y-6">
+                <input type="text" id="dateInput" placeholder="Enter your purr-ferred date (e.g., 9/10)" class="w-full px-4 py-2 rounded-full border-2 border-pink-300 focus:outline-none focus:border-pink-500">
+                <button onclick="handleDateSelection()" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
+                    This date is purr-fect! Let's do it! 🌟
+                </button>
+            </div>
+            <div class="mt-6 md:mt-8 relative">
+                <div class="absolute top-0 left-1/4 text-4xl md:text-5xl sparkle">🎉</div>
+                <div class="absolute bottom-0 right-1/4 text-4xl md:text-5xl sparkle" style="animation-delay: 0.5s;">🎊</div>
+            </div>
+        </div>
+
+        <!-- Final Confirmation -->
+        <div id="final-confirmation" class="hidden text-center bg-white rounded-3xl shadow-2xl p-8 md:p-10 kawaii-bg kute-border">
+            <div class="text-7xl md:text-8xl mb-6 wiggle-animation">
+                😻
+            </div>
+            <p class="cabin-sketch text-3xl md:text-4xl text-purple-500 mb-6 rainbow-text">
+                Meow-velous choice, Changg!
+            </p>
+            <p id="confirmation-message" class="nunito text-xl md:text-2xl text-gray-700 mb-8">
+                [Confirmation message will appear here]
+            </p>
+            <div class="relative mb-8">
+                <img src="e5.gif" alt="A super cute cartoon cat doing a happy dance" class="mx-auto rounded-2xl shadow-lg max-w-full h-auto">
+            </div>
             <div class="space-y-4 md:space-y-6 relative">
-                <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
-                    Nya~ Let's make it a purr-fect night! 💖
+                <button onclick="handleFinalConfirmation()" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg w-full">
+                    Paw-sitively excited! Can't wait! 💖
                 </button>
                 <button id="moving-no" class="absolute bg-gradient-to-r from-blue-400 to-teal-400 hover:from-blue-500 hover:to-teal-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg">
-                    Still unsure...
+                    Meow~ I need to double-check...
                 </button>
             </div>
             <div class="mt-6 md:mt-8 relative">
@@ -216,6 +302,7 @@
 
         // Preload the audio
         bgMusic.load();
+        bgMusic.volume = 0.5; // Set volume to 50%
 
         document.getElementById('envelope').addEventListener('click', function() {
             this.classList.add('hidden');
@@ -247,8 +334,10 @@
             document.getElementById('letter').classList.add('hidden');
             document.getElementById('yes-response').classList.add('hidden');
             document.getElementById('no-response-1').classList.add('hidden');
+            document.getElementById('no-response-1-5').classList.add('hidden');
             document.getElementById('no-response-2').classList.add('hidden');
-            document.getElementById('final-response').classList.add('hidden');
+            document.getElementById('no-response-3').classList.add('hidden');
+            document.getElementById('final-confirmation').classList.add('hidden');
             document.getElementById('response-messages').classList.remove('hidden');
         }
 
@@ -263,13 +352,34 @@
 
         function handleSecondNo() {
             hideAllElements();
+            document.getElementById('no-response-1-5').classList.remove('hidden');
+        }
+
+        function handleThirdNo() {
+            hideAllElements();
             document.getElementById('no-response-2').classList.remove('hidden');
         }
 
-        function handleFinalNo() {
+        function handleFourthNo() {
             hideAllElements();
-            document.getElementById('final-response').classList.remove('hidden');
-            setupMovingButton();
+            document.getElementById('no-response-3').classList.remove('hidden');
+        }
+
+        function handleDateSelection() {
+            const customDate = document.getElementById('dateInput').value;
+            if (customDate) {
+                hideAllElements();
+                document.getElementById('final-confirmation').classList.remove('hidden');
+                document.getElementById('confirmation-message').textContent = `Yay! ${customDate} sounds purr-fect! I can't wait to see you then! Shall we make it official?`;
+                setupMovingButton();
+            } else {
+                alert("Meow~ Please enter a date first!");
+            }
+        }
+
+        function handleFinalConfirmation() {
+            hideAllElements();
+            document.getElementById('yes-response').classList.remove('hidden');
         }
 
         function setupMovingButton() {
