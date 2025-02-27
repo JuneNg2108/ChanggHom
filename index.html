@@ -68,18 +68,6 @@
             border-image-slice: 1;
             animation: rainbow 5s linear infinite;
         }
-        #kitten-cursor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-        }
-        .virtual-gift {
-            position: absolute;
-            font-size: 2rem;
-            animation: float 3s ease-in-out infinite;
-        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-200 via-purple-100 to-blue-200 min-h-screen flex items-center justify-center p-4">
@@ -90,13 +78,6 @@
 
     <div id="muteButton" class="mute-button">
         <i class="fas fa-volume-up text-2xl text-pink-500"></i>
-    </div>
-
-    <img id="kitten-cursor" src="cat.png" alt="Cat Cursor" class="hidden">
-
-    <div id="countdown" class="fixed top-4 right-4 bg-white rounded-full p-4 shadow-lg text-center">
-        <p class="text-2xl font-bold text-pink-500">Countdown to purr~fect dine:</p>
-        <p id="countdown-timer" class="text-xl text-purple-600"></p>
     </div>
 
     <!-- Envelope Section -->
@@ -116,6 +97,9 @@
             <div class="absolute top-0 right-0 text-4xl md:text-5xl wiggle-animation">🎀</div>
             <h1 class="cabin-sketch text-5xl md:text-6xl text-pink-500 mb-6 md:mb-8 rainbow-text">Meow there, Changg!</h1>
             <div class="relative bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 shadow-inner">
+                <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4">
+                    <img src="end1.png" alt="A placeholder for Changg's image, resembling a cute stamp with a pink border" class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-pink-300 shadow-lg">
+                </div>
                 <p class="cabin-sketch text-3xl md:text-4xl text-gray-700 mb-4">Dear Changg,</p>
                 <p class="nunito text-lg md:text-xl mb-4 md:mb-6 text-gray-700 leading-relaxed">
                     🌟 Nya~ Would you make this kitty's day super special? 🐾
@@ -132,7 +116,7 @@
                 </p>
             </div>
             <p class="cabin-sketch text-2xl md:text-3xl text-purple-500 mb-6 md:mb-8 rainbow-text">
-                What do you say, my furr-end? Are you feline up for it?
+                What do you say, my furr-end?
             </p>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
                 <button onclick="handleResponse(true)" class="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-8 md:px-10 py-3 md:py-4 rounded-full nunito text-lg md:text-xl font-bold transition-all transform hover:scale-105 shadow-lg">
@@ -364,25 +348,21 @@
             } else {
                 document.getElementById('no-response-1').classList.remove('hidden');
             }
-            showVirtualGift();
         }
 
         function handleSecondNo() {
             hideAllElements();
             document.getElementById('no-response-1-5').classList.remove('hidden');
-            showVirtualGift();
         }
 
         function handleThirdNo() {
             hideAllElements();
             document.getElementById('no-response-2').classList.remove('hidden');
-            showVirtualGift();
         }
 
         function handleFourthNo() {
             hideAllElements();
             document.getElementById('no-response-3').classList.remove('hidden');
-            showVirtualGift();
         }
 
         function handleDateSelection() {
@@ -392,7 +372,6 @@
                 document.getElementById('final-confirmation').classList.remove('hidden');
                 document.getElementById('confirmation-message').textContent = `Yay! ${customDate} sounds purr-fect! I can't wait to see you then! Shall we make it official?`;
                 setupMovingButton();
-                showVirtualGift();
             } else {
                 alert("Meow~ Please enter a date first!");
             }
@@ -401,7 +380,6 @@
         function handleFinalConfirmation() {
             hideAllElements();
             document.getElementById('yes-response').classList.remove('hidden');
-            showVirtualGift();
         }
 
         function setupMovingButton() {
@@ -420,55 +398,8 @@
             // Initial movement
             moveButton();
 
-            // Move every 0.5 seconds
+            // Move every 2 seconds
             setInterval(moveButton, 500);
-        }
-
-        // Kitten cursor
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.getElementById('kitten-cursor');
-            cursor.style.left = (e.clientX - 20) + 'px';
-            cursor.style.top = (e.clientY - 20) + 'px';
-        });
-
-        document.body.addEventListener('mouseenter', () => {
-            document.getElementById('kitten-cursor').classList.remove('hidden');
-        });
-
-        document.body.addEventListener('mouseleave', () => {
-            document.getElementById('kitten-cursor').classList.add('hidden');
-        });
-
-        // Countdown timer
-        function updateCountdown() {
-            const now = new Date();
-            const targetDate = new Date('2025-03-09T19:00:00');
-            const difference = targetDate - now;
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown-timer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Virtual gifts
-        function showVirtualGift() {
-            const gifts = ['🌸', '🎀', '🍰', '🐾', '💖', '🐱'];
-            const gift = gifts[Math.floor(Math.random() * gifts.length)];
-            const giftElement = document.createElement('div');
-            giftElement.classList.add('virtual-gift');
-            giftElement.textContent = gift;
-            giftElement.style.left = Math.random() * 80 + 10 + '%';
-            giftElement.style.top = Math.random() * 80 + 10 + '%';
-            document.body.appendChild(giftElement);
-            setTimeout(() => {
-                giftElement.remove();
-            }, 3000);
         }
 
         // Add this to ensure smooth playback
@@ -478,25 +409,6 @@
             } else {
                 if (!isMuted) bgMusic.play();
             }
-        });
-
-        // Hide default cursor
-        document.body.style.cursor = 'none';
-
-        // Show custom cursor on all clickable elements
-        const clickableElements = document.querySelectorAll('button, input, .envelope');
-        clickableElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                document.getElementById('kitten-cursor').style.transform = 'scale(1.2)';
-            });
-            element.addEventListener('mouseleave', () => {
-                document.getElementById('kitten-cursor').style.transform = 'scale(1)';
-            });
-        });
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('kitten-cursor').classList.remove('hidden');
         });
     </script>
 </body>
